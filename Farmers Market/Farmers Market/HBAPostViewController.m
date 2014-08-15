@@ -27,6 +27,7 @@
     NSMutableDictionary *_beaconDictionary;
     NSMutableArray *_listOfPosts;
     NSMutableDictionary *_dictOfPosts;
+    NSMutableDictionary *_listOfOldPositions;
 }
 
 #pragma mark View Lifecycle
@@ -46,6 +47,7 @@
     [self loadBeacons];
     [self loadBeaconUUIDs];
     _dictOfPosts = [[NSMutableDictionary alloc] init];
+    _listOfOldPositions = [[NSMutableDictionary alloc] init];
     
     [self startMonitoringRegions];
     
@@ -82,9 +84,14 @@
 #pragma mark CLLocation Manager
 
 -(void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-    _listOfPosts = [[NSMutableArray alloc] initWithCapacity:[beacons count]];
+    //set up the dictionary for the old positions
+    for (int i = 0; i < [_listOfBeacons count]; i++) {
+        HBABeacon *item = _listOfBeacons[i];
+        [_listOfOldPositions setObject:[NSNumber numberWithInt:i] forKey:[item identifier]];
+    }
+    
+    _listOfBeacons = [[NSMutableArray alloc] init];
     for (CLBeacon *beacon in beacons) {
-        
         //get hbabeacon for clbeacon or create it if there is none
         NSString *identifier = [NSString stringWithFormat:@"%@:%zd:%zd", [beacon.proximityUUID UUIDString], [beacon.major integerValue], [beacon.minor integerValue]];
         HBABeacon *updateBeacon = [_beaconDictionary objectForKey:identifier];
@@ -95,32 +102,29 @@
             updateBeacon.minor = [beacon.minor integerValue];
             updateBeacon.name = [NSString stringWithFormat:@"Farmers Market %@-%@", beacon.major, beacon.minor];
             [updateBeacon updateIdentifier];
-            [_listOfBeacons addObject:updateBeacon];
             [_beaconDictionary setObject:updateBeacon forKey:updateBeacon.identifier];
             NSLog(@"Beacon Created: %@", updateBeacon.name);
         }
-        
+        [_listOfBeacons addObject:updateBeacon];
         [updateBeacon updateBeaconWithCLBeacon:beacon];
-        
-        if (![_dictOfPosts objectForKey:updateBeacon.identifier]) {
-            NSString *method = @"getPostFromBeaconID";
-            NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=%@", method, updateBeacon.identifier];
-            HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
-                if (!error) {
-                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                    HBAPost *post = [[HBAPost alloc] initWithAttributeDictionary:dict];
-                    [_listOfPosts addObject:post];
-                    [_dictOfPosts setObject:post forKey:updateBeacon.identifier];
-                }
-                else {
-                }
-            }];
-            [databaseConnector startConnection];
-        } else {
-            [_listOfPosts addObject:[_dictOfPosts objectForKey:updateBeacon.identifier]];
-        }
     }
-    [self.collectionView reloadData];
+    
+    //update the order of the list of beacons
+    [_listOfBeacons sortUsingComparator:^NSComparisonResult(HBABeacon *beacon1, HBABeacon *beacon2) {
+        if (beacon1.rssi < (beacon2.rssi - 7)) {
+            return NSOrderedDescending;
+        }
+        else if (beacon1.rssi > beacon2.rssi + 7) {
+            //if the location is unknown, we want to return descending since it is far away.. (actually, we want to remove it from the list altogether?
+            if (beacon1.rssi == 0) {
+                return NSOrderedDescending;
+            }
+            return NSOrderedAscending;
+        }
+        return NSOrderedSame;
+    }];
+    
+    [self reloadPosts];
 }
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
@@ -164,6 +168,50 @@
                                                                            minor:item.minor
                                                                       identifier:item.name];
     return beaconRegion;
+}
+
+#pragma mark Algorithms, Yo
+
+-(void)reloadPosts {
+    _listOfPosts = [[NSMutableArray alloc] initWithCapacity:[_listOfBeacons count]];
+    for (int i = 0; i < [_listOfBeacons count]; i++) {
+        HBABeacon *updateBeacon = _listOfBeacons[i];
+        if (![_dictOfPosts objectForKey:updateBeacon.identifier]) {
+            NSString *method = @"getPostFromBeaconID";
+            NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=%@", method, updateBeacon.identifier];
+            HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
+                if (!error) {
+                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                    HBAPost *post = [[HBAPost alloc] initWithAttributeDictionary:dict];
+                    [_listOfPosts addObject:post];
+                    [_dictOfPosts setObject:post forKey:updateBeacon.identifier];
+                    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self collectionView:self.collectionView numberOfItemsInSection:0] - 1 inSection:0]]];
+                }
+                else {
+                }
+            }];
+            [databaseConnector startConnection];
+        } else {
+            [_listOfPosts addObject:[_dictOfPosts objectForKey:updateBeacon.identifier]];
+        }
+    }
+    
+    [self.collectionView performBatchUpdates:^{
+        for (int i = 0; i < [_listOfBeacons count]; i++) {
+            HBABeacon *item = _listOfBeacons[i];
+            NSNumber *prevPos = [_listOfOldPositions objectForKey:[item identifier]];
+            if (!prevPos) {
+                continue;
+            }
+            else if ([prevPos intValue] != i) {
+                NSIndexPath *from = [NSIndexPath indexPathForItem:prevPos.intValue inSection:0];
+                NSIndexPath *to = [NSIndexPath indexPathForItem:i inSection:0];
+                [self.collectionView moveItemAtIndexPath:from toIndexPath:to];
+            }
+        }
+    } completion:^(BOOL success) {
+        [self.collectionView reloadData];
+    }];
 }
 
 #pragma mark Set Up
