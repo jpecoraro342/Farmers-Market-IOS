@@ -8,6 +8,7 @@
 
 #import "HBAVendorViewController.h"
 #import "HBAVendorDetailViewController.h"
+#import "HBAVendorDetailAccordianViewController.h"
 #import "HBADatabaseConnector.h"
 #import "HBAVendorCell.h"
 #import "HBAVendor.h"
@@ -50,13 +51,14 @@
     HBAVendorCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"vendorCell" forIndexPath:indexPath];
     
     cell.vendorNameLabel.text = [_listOfVendors[indexPath.row] name];
-    cell.vendorImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg", indexPath.row+1]];
+    cell.vendorImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%li.jpg", indexPath.row+1]];
     
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    HBAVendorDetailViewController *detail = [[HBAVendorDetailViewController alloc] init];
+    //HBAVendorDetailViewController *detail = [[HBAVendorDetailViewController alloc] init];
+    HBAVendorDetailAccordianViewController *detail = [[HBAVendorDetailAccordianViewController alloc] init];
     [self.navigationController pushViewController:detail animated:YES];
 }
 
