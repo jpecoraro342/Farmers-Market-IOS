@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HBAVendorDetailAccordianViewController">
             <connections>
-                <outlet property="coverImageView" destination="Sfs-JR-uKt" id="cA9-BV-jgk"/>
+                <outlet property="coverImageView" destination="jhB-9k-sUZ" id="FJB-tS-ggb"/>
                 <outlet property="tableView" destination="bib-al-BVy" id="PzL-r5-dq9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,18 +16,22 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="farm.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Sfs-JR-uKt">
-                    <rect key="frame" x="0.0" y="64" width="320" height="170"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="170" id="4un-1w-e3y"/>
-                    </constraints>
-                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bib-al-BVy">
-                    <rect key="frame" x="0.0" y="242" width="320" height="326"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="5pS-T3-jYe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="farm.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jhB-9k-sUZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="q58-vE-lsA"/>
                         <outlet property="delegate" destination="-1" id="bYz-dU-KkD"/>
@@ -36,13 +40,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="bib-al-BVy" secondAttribute="trailing" id="0uP-QO-s92"/>
-                <constraint firstItem="bib-al-BVy" firstAttribute="top" secondItem="Sfs-JR-uKt" secondAttribute="bottom" constant="8" id="1lO-VK-por"/>
-                <constraint firstItem="Sfs-JR-uKt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BJP-Pj-4Rq"/>
-                <constraint firstAttribute="bottom" secondItem="bib-al-BVy" secondAttribute="bottom" id="ISG-tg-0G9"/>
-                <constraint firstItem="Sfs-JR-uKt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Ty0-9S-hcw"/>
-                <constraint firstItem="bib-al-BVy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UdA-AO-2Mv"/>
-                <constraint firstAttribute="trailing" secondItem="Sfs-JR-uKt" secondAttribute="trailing" id="wEp-Gd-vpy"/>
+                <constraint firstItem="bib-al-BVy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8og-cx-1na"/>
+                <constraint firstAttribute="trailing" secondItem="bib-al-BVy" secondAttribute="trailing" id="WdJ-KF-ssa"/>
+                <constraint firstItem="bib-al-BVy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Xxd-jz-CF8"/>
+                <constraint firstAttribute="bottom" secondItem="bib-al-BVy" secondAttribute="bottom" id="vNN-aA-Kwt"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

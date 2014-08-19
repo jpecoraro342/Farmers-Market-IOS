@@ -40,10 +40,11 @@
 
 -(void)addShadow {
     [self.layer setShadowPath:[[UIBezierPath bezierPathWithRoundedRect:self.layer.bounds cornerRadius:5] CGPath]];
-    [self.layer setShadowColor:[UIColor blackColor].CGColor];
+    [self.layer setShadowColor:[UIColor darkGrayColor].CGColor];
     [self.layer setShadowOpacity:.7];
-    [self.layer setShadowRadius:5];
-    [self.layer setShadowOffset:CGSizeZero];
+    [self.layer setShadowRadius:3];
+    //[self.layer setShadowOffset:CGSizeMake(2, 3)];
+    [self.layer setShadowOffset:CGSizeMake(1, -1)];
 }
 
 //update the shadow path (in the case of autolayout resizes, etc..)

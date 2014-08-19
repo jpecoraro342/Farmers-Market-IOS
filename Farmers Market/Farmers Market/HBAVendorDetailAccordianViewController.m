@@ -24,7 +24,11 @@
 {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     _cellIsSelected = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithBool:NO], [NSNumber numberWithBool:NO], [NSNumber numberWithBool:NO], nil];
+    
+    self.navigationItem.title = @"Vine";
     
     UINib *nib = [UINib nibWithNibName:@"HBAVendorDetailTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"detailCell"];
@@ -34,9 +38,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_cellIsSelected[indexPath.row] boolValue]) {
-        return 180;
+        return 182;
     }
-    return 62;
+    return 66;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -62,6 +66,14 @@
         default:
             break;
     }
+    [cell.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0f]];
+    
+    [cell.headerView.layer setCornerRadius:3];
+    [cell.headerView.layer setShadowPath:[[UIBezierPath bezierPathWithRoundedRect:cell.headerView.layer.bounds cornerRadius:3] CGPath]];
+    [cell.headerView.layer setShadowColor:[UIColor darkGrayColor].CGColor];
+    [cell.headerView.layer setShadowOpacity:.7];
+    [cell.headerView.layer setShadowRadius:2];
+    [cell.headerView.layer setShadowOffset:CGSizeMake(0, -1)];
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
@@ -72,6 +84,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

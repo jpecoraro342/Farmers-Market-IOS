@@ -50,8 +50,10 @@
 -(HBAVendorCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HBAVendorCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"vendorCell" forIndexPath:indexPath];
     
+    cell.backgroundColor = [UIColor colorWithRed:222/255.0f green:222/255.0f blue:222/255.0f alpha:1];
+    [cell.vendorNameLabel setFont:[UIFont boldSystemFontOfSize:15]];
     cell.vendorNameLabel.text = [_listOfVendors[indexPath.row] name];
-    cell.vendorImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%li.jpg", indexPath.row+1]];
+    cell.vendorImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%zd.jpg", indexPath.row+1]];
     
     return cell;
 }
