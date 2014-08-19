@@ -13,14 +13,16 @@
 -(instancetype)initWithAttributeDictionary:(NSDictionary *)attributeDictionary {
     self = [super init];
     if (self) {
-        self.name = [attributeDictionary objectForKey:@"name"];
-        self.identifier = [attributeDictionary objectForKey:@"userID"];
+        self.userID = [attributeDictionary objectForKey:@"userID"];
+        self.stallName = [attributeDictionary objectForKey:@"name"];
+        self.stallInfo = [attributeDictionary objectForKey:@"stallInfo"];
+        self.thumbURL = [attributeDictionary objectForKey:@"thumbURL"];
     }
     return self;
 }
 
 -(NSUInteger)hash {
-    return [self.identifier hash];
+    return [self.userID hash];
 }
 
 @end

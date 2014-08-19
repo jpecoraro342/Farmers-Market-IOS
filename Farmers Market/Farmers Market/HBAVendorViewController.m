@@ -48,7 +48,7 @@
     
     cell.backgroundColor = [UIColor colorWithRed:222/255.0f green:222/255.0f blue:222/255.0f alpha:1];
     [cell.vendorNameLabel setFont:[UIFont boldSystemFontOfSize:15]];
-    cell.vendorNameLabel.text = [_listOfVendors[indexPath.row] name];
+    cell.vendorNameLabel.text = [_listOfVendors[indexPath.row] stallName];
     cell.vendorImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%zd.jpg", indexPath.row+1]];
     
     return cell;

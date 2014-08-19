@@ -45,7 +45,7 @@
 		7CCCAFF7199A4DE50039422C /* Farmers_MarketTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCAFF6199A4DE50039422C /* Farmers_MarketTests.m */; };
 		7CCCB00A199A4EC00039422C /* HBADatabaseConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCB001199A4EC00039422C /* HBADatabaseConnector.m */; };
 		7CCCB00B199A4EC00039422C /* HBAConnectionTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCB003199A4EC00039422C /* HBAConnectionTester.m */; };
-		7CCCB00C199A4EC00039422C /* HBAPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCB005199A4EC00039422C /* HBAPost.m */; };
+		7CCCB00C199A4EC00039422C /* HBAVendorDetailSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCB005199A4EC00039422C /* HBAVendorDetailSection.m */; };
 		7CCCB00D199A4EC00039422C /* HBABeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCB007199A4EC00039422C /* HBABeacon.m */; };
 		7CCCB00E199A4EC00039422C /* HBAVendor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCB009199A4EC00039422C /* HBAVendor.m */; };
 		DE39E685558143E091BDA5FD /* libPods-Farmers Market.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFF10D2914145A7A6F11911 /* libPods-Farmers Market.a */; };
@@ -111,8 +111,8 @@
 		7CCCB001199A4EC00039422C /* HBADatabaseConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBADatabaseConnector.m; sourceTree = "<group>"; };
 		7CCCB002199A4EC00039422C /* HBAConnectionTester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAConnectionTester.h; sourceTree = "<group>"; };
 		7CCCB003199A4EC00039422C /* HBAConnectionTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAConnectionTester.m; sourceTree = "<group>"; };
-		7CCCB004199A4EC00039422C /* HBAPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAPost.h; sourceTree = "<group>"; };
-		7CCCB005199A4EC00039422C /* HBAPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAPost.m; sourceTree = "<group>"; };
+		7CCCB004199A4EC00039422C /* HBAVendorDetailSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAVendorDetailSection.h; sourceTree = "<group>"; };
+		7CCCB005199A4EC00039422C /* HBAVendorDetailSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAVendorDetailSection.m; sourceTree = "<group>"; };
 		7CCCB006199A4EC00039422C /* HBABeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBABeacon.h; sourceTree = "<group>"; };
 		7CCCB007199A4EC00039422C /* HBABeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBABeacon.m; sourceTree = "<group>"; };
 		7CCCB008199A4EC00039422C /* HBAVendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAVendor.h; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 				7CCCB001199A4EC00039422C /* HBADatabaseConnector.m */,
 				7CCCB002199A4EC00039422C /* HBAConnectionTester.h */,
 				7CCCB003199A4EC00039422C /* HBAConnectionTester.m */,
-				7CCCB004199A4EC00039422C /* HBAPost.h */,
-				7CCCB005199A4EC00039422C /* HBAPost.m */,
+				7CCCB004199A4EC00039422C /* HBAVendorDetailSection.h */,
+				7CCCB005199A4EC00039422C /* HBAVendorDetailSection.m */,
 				7CCCB006199A4EC00039422C /* HBABeacon.h */,
 				7CCCB007199A4EC00039422C /* HBABeacon.m */,
 				7CCCB008199A4EC00039422C /* HBAVendor.h */,
@@ -449,7 +449,7 @@
 				7CC191E819A26C3F00DDA815 /* HBAVendorDetailTableViewCell.m in Sources */,
 				7CCCAFDE199A4DE50039422C /* main.m in Sources */,
 				7CA26BAE199D4B0D00C80AA4 /* HBAVendorCard.m in Sources */,
-				7CCCB00C199A4EC00039422C /* HBAPost.m in Sources */,
+				7CCCB00C199A4EC00039422C /* HBAVendorDetailSection.m in Sources */,
 				7CCCB00E199A4EC00039422C /* HBAVendor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

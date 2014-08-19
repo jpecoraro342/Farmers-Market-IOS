@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HBAPost : NSObject
+@interface HBAVendorDetailSection : NSObject
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *userID;
-@property (nonatomic, copy) NSString *beaconID;
 
 -(instancetype)initWithAttributeDictionary:(NSDictionary*)attributeDictionary;
 
