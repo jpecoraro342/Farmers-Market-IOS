@@ -56,6 +56,36 @@
     [databaseConnector startConnection];
 }
 
++(void)getStallDetails:(NSString*)userID
+{
+    NSString *method = @"getStallDetails";
+    NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=%@", method, userID];
+    HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
+        if (!error) {
+            
+        }
+        else {
+            [self alertUserOfErrorWithError:error];
+        }
+    }];
+    [databaseConnector startConnection];
+}
+
++(void)getStallFromBeaconID:(NSString*)beaconID
+{
+    NSString *method = @"getStallFromBeaconID";
+    NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=%@", method, beaconID];
+    HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
+        if (!error) {
+            
+        }
+        else {
+            [self alertUserOfErrorWithError:error];
+        }
+    }];
+    [databaseConnector startConnection];
+}
+
 +(void)getPostFromBeaconID:(NSString*)beaconID
 {
     NSString *method = @"getPostFromBeaconID";
