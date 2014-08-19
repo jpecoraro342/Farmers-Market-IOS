@@ -7,12 +7,10 @@
 //
 
 #import "HBAVendorViewController.h"
-#import "HBAVendorDetailViewController.h"
 #import "HBAVendorDetailAccordianViewController.h"
 #import "HBADatabaseConnector.h"
-#import "HBAVendorCell.h"
 #import "HBAVendor.h"
-#import "SWRevealViewController.h"
+#import "HBAVendorCard.h"
 
 @interface HBAVendorViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -31,8 +29,6 @@
     [self loadVendors];
     
     self.navigationItem.title = @"Farmer's Market";
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hamburgerIcon"] style:UIBarButtonItemStyleBordered target:[self revealViewController] action:@selector(revealToggle:)];
-    self.navigationItem.leftBarButtonItem = menuButton;
     
     UINib *nib = [UINib nibWithNibName:@"HBAVendorCard" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"vendorCell"];
@@ -47,8 +43,8 @@
     return [_listOfVendors count];
 }
 
--(HBAVendorCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    HBAVendorCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"vendorCell" forIndexPath:indexPath];
+-(HBAVendorCard *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    HBAVendorCard *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"vendorCell" forIndexPath:indexPath];
     
     cell.backgroundColor = [UIColor colorWithRed:222/255.0f green:222/255.0f blue:222/255.0f alpha:1];
     [cell.vendorNameLabel setFont:[UIFont boldSystemFontOfSize:15]];

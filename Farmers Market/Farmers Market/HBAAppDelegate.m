@@ -7,10 +7,7 @@
 //
 
 #import "HBAAppDelegate.h"
-#import "HBAPostViewController.h"
 #import "HBAVendorViewController.h"
-#import "HBAMenuViewController.h"
-#import "SWRevealViewController.h"
 
 @implementation HBAAppDelegate
 
@@ -18,15 +15,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor darkGrayColor]];
     
     UINavigationController *mainPage = [[UINavigationController alloc] initWithRootViewController:[[HBAVendorViewController alloc] init]];
-    //UINavigationController *menuView = [[UINavigationController alloc] initWithRootViewController:[[HBAMenuViewController alloc] init]];
-    HBAMenuViewController *menuView = [[HBAMenuViewController alloc] init];
     
-    SWRevealViewController *viewController = [[SWRevealViewController alloc] initWithRearViewController:menuView frontViewController:mainPage];
-    
-    self.window.rootViewController = viewController;
+    self.window.rootViewController = mainPage;
     
     [self.window makeKeyAndVisible];
     return YES;
