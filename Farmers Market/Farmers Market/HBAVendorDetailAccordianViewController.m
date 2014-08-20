@@ -75,6 +75,9 @@
     [cell.headerView.layer setShadowRadius:2];
     [cell.headerView.layer setShadowOffset:CGSizeMake(0, -1)];
     
+    cell.upArrowImageView.hidden = ![[_cellIsSelected objectAtIndex:indexPath.row] boolValue];
+    cell.downArrowImageView.hidden = [[_cellIsSelected objectAtIndex:indexPath.row] boolValue];
+    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
@@ -83,6 +86,11 @@
     _cellIsSelected[indexPath.row] = [NSNumber numberWithBool:![_cellIsSelected[indexPath.row] boolValue]];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.tableView beginUpdates];
+    
+    HBAVendorDetailTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.upArrowImageView.hidden = ![[_cellIsSelected objectAtIndex:indexPath.row] boolValue];
+    cell.downArrowImageView.hidden = [[_cellIsSelected objectAtIndex:indexPath.row] boolValue];
+    
     [self.tableView endUpdates];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }

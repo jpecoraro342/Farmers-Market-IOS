@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIImageView *downArrowImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *upArrowImageView;
 
 @end

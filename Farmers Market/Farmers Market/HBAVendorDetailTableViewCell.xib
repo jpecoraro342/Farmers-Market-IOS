@@ -25,6 +25,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="downarrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="lmQ-96-H7l">
+                                <rect key="frame" x="280" y="22" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="uparrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="T6b-Tl-csG">
+                                <rect key="frame" x="280" y="22" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -39,9 +47,15 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="detailTextView" destination="QBM-3g-LjP" id="FzQ-sP-v9U"/>
+                <outlet property="downArrowImageView" destination="lmQ-96-H7l" id="dya-dn-eyJ"/>
                 <outlet property="headerView" destination="wiD-el-S0i" id="Y5D-F6-3QG"/>
                 <outlet property="titleLabel" destination="q9l-QM-4fY" id="oi0-Id-K3p"/>
+                <outlet property="upArrowImageView" destination="T6b-Tl-csG" id="asN-ey-y7m"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="downarrow.png" width="44" height="24"/>
+        <image name="uparrow.png" width="44" height="24"/>
+    </resources>
 </document>

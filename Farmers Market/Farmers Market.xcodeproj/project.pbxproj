@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C6262A319A5368000760427 /* downarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6262A119A5368000760427 /* downarrow@2x.png */; };
+		7C6262A419A5368000760427 /* uparrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6262A219A5368000760427 /* uparrow@2x.png */; };
 		7CA26B8B199D0FF000C80AA4 /* HBAVendorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26B89199D0FF000C80AA4 /* HBAVendorViewController.m */; };
 		7CA26B8C199D0FF000C80AA4 /* HBAVendorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B8A199D0FF000C80AA4 /* HBAVendorViewController.xib */; };
 		7CA26BA0199D3A5B00C80AA4 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B95199D3A5B00C80AA4 /* 10.jpg */; };
@@ -63,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		479DC7BF030147E69D730D85 /* Pods-Farmers Market.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Farmers Market.xcconfig"; path = "Pods/Pods-Farmers Market.xcconfig"; sourceTree = "<group>"; };
+		7C6262A119A5368000760427 /* downarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downarrow@2x.png"; sourceTree = "<group>"; };
+		7C6262A219A5368000760427 /* uparrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uparrow@2x.png"; sourceTree = "<group>"; };
 		7CA26B88199D0FF000C80AA4 /* HBAVendorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAVendorViewController.h; sourceTree = "<group>"; };
 		7CA26B89199D0FF000C80AA4 /* HBAVendorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAVendorViewController.m; sourceTree = "<group>"; };
 		7CA26B8A199D0FF000C80AA4 /* HBAVendorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HBAVendorViewController.xib; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 		7CA26B94199D3A5B00C80AA4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7C6262A119A5368000760427 /* downarrow@2x.png */,
+				7C6262A219A5368000760427 /* uparrow@2x.png */,
 				7CA26BC7199E40AB00C80AA4 /* hamburgerIcon@2x.png */,
 				7CA26BB5199D566B00C80AA4 /* farm.jpg */,
 				7CA26BB6199D566B00C80AA4 /* honey.jpg */,
@@ -386,9 +392,11 @@
 				7CCCAFDC199A4DE50039422C /* InfoPlist.strings in Resources */,
 				7CA26BA9199D3A5B00C80AA4 /* 8.jpg in Resources */,
 				7CA26BA4199D3A5B00C80AA4 /* 3.jpg in Resources */,
+				7C6262A419A5368000760427 /* uparrow@2x.png in Resources */,
 				7CA26B8C199D0FF000C80AA4 /* HBAVendorViewController.xib in Resources */,
 				7CCCAFE4199A4DE50039422C /* Images.xcassets in Resources */,
 				7CA26BA2199D3A5B00C80AA4 /* 1.jpg in Resources */,
+				7C6262A319A5368000760427 /* downarrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
