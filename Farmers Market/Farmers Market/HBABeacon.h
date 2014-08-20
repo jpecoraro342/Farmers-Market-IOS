@@ -27,15 +27,7 @@
 @property (nonatomic, assign) BOOL hasBeenReset;
 @property (nonatomic, strong) NSDate *lastNotificationDate;
 
-@property (nonatomic, strong) NSMutableArray *timeHistory;
-@property (nonatomic, strong) NSMutableArray *rssiHistory;
-@property (nonatomic, strong) NSMutableArray *distanceHistory;
-
 @property (nonatomic, strong) NSDateFormatter *timeFormatter;
-
-@property (nonatomic, assign) BOOL writeAllInfo;
-
-@property (nonatomic, strong) HBAVendor *pairedVendor;
 
 -(void)updateBeaconWithCLBeacon:(CLBeacon *)beacon;
 -(BOOL)isEqualToCLBeacon:(CLBeacon *)beacon;

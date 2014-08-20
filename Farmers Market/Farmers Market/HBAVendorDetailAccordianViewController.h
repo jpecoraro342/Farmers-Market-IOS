@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HBAVendor;
 
 @interface HBAVendorDetailAccordianViewController : UIViewController
+
+-(instancetype)initWithVendor:(HBAVendor *)vendor;
 
 @end

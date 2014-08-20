@@ -20,6 +20,10 @@
 
 @property (nonatomic, strong) UIImage *stallThumb;
 
+@property (nonatomic, strong) NSMutableArray *detailSections;
+
 -(instancetype)initWithAttributeDictionary:(NSDictionary *)attributeDictionary;
+
+-(void)loadDetailSections:(void(^)())completed;
 
 @end
