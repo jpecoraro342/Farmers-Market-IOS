@@ -13,4 +13,7 @@
 #define kBaseURL @"http://107.170.73.49/"
 #define kMobileAPI @"CRUD.php"
 
+#define kNumberOfBeaconsInQuiver 3
+#define kFarmersMarketUUID @"B30071DE-17B6-4B1E-8915-A01B2E1ABA04"
+
 #endif
