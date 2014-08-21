@@ -30,7 +30,6 @@
 @property (nonatomic, assign) SEL targetAction;
 
 -(instancetype) initWithURLString:(NSString*)URL andPostData:(NSString*)postData completionBlock:(void(^)(NSMutableData* data, NSError* error))responseHandler;
--(instancetype) initWithURLString:(NSString*)URL andPostData:(NSString*)postData target:(id)responseTarget response:(SEL)targetAction;
 -(instancetype) initWithImageName:(NSString*)imageName imageFormat:(NSString*)imageFormat imageDate:(NSData*)imageData;
 -(void)startConnection;
 -(void)startUpload;

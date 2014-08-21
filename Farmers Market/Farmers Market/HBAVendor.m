@@ -18,6 +18,7 @@
         self.userID = [attributeDictionary objectForKey:@"userID"];
         self.stallName = [attributeDictionary objectForKey:@"stallName"];
         self.stallInfo = [attributeDictionary objectForKey:@"stallInfo"];
+        self.beaconID = [attributeDictionary objectForKey:@"beaconID"];
         self.thumbURL = [attributeDictionary objectForKey:@"thumbURL"];
     }
     return self;

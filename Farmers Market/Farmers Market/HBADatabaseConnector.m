@@ -24,20 +24,6 @@
     return self;
 }
 
--(instancetype)initWithURLString:(NSString *)URL andPostData:(NSString *)postData target:(id)responseTarget response:(SEL)targetAction {
-    self = [super init];
-    if (self) {
-        _url = [[NSURL alloc] initWithString:URL relativeToURL:[[NSURL alloc] initWithString:kBaseURL]];
-        _postData = postData;
-        _target = responseTarget;
-        _targetAction = targetAction;
-        _data = [[NSMutableData alloc] init];
-        _logMessage = [[NSMutableString alloc] initWithString:@"\n\n\n"];
-        _timeoutInterval = 5;
-    }
-    return self;
-}
-
 -(instancetype)initWithImageName:(NSString *)imageName imageFormat:(NSString *)imageFormat imageDate:(NSData *)imageData {
     self = [super init];
     if (self) {
@@ -128,12 +114,6 @@
     
     if (_responseHandler) {
         _responseHandler(self.data, error);
-    }
-    else {
-        //cannot performSelectorOnMainThread with two objects?
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.target performSelector:self.targetAction withObject:self.data withObject:error];
-        });
     }
     [self destroyConnection];
     

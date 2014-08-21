@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *stallName;
 @property (nonatomic, copy) NSString *stallInfo;
+@property (nonatomic, copy) NSString *beaconID;
 @property (nonatomic, copy) NSString *thumbURL;
 @property (nonatomic, copy) NSString *coverPhotoURL;
 

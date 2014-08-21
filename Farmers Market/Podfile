@@ -3,7 +3,7 @@ platform :ios, "7.0"
 
 target "Farmers Market" do
 
-pod 'SWRevealViewController'
+pod 'SDWebImage'
 
 end
 
