@@ -82,6 +82,7 @@
     cell.backgroundColor = [UIColor colorWithRed:222/255.0f green:222/255.0f blue:222/255.0f alpha:1];
     [cell.vendorNameLabel setFont:[UIFont boldSystemFontOfSize:15]];
     cell.vendorNameLabel.text = [vendor stallName];
+    cell.vendorInfoTextView.text = [vendor stallInfo];
     [cell.vendorImage sd_setImageWithURL:[NSURL URLWithString:vendor.thumbURL] placeholderImage:nil];
     
     return cell;
@@ -145,9 +146,9 @@
     
     NSDate *collectionViewStart = [NSDate new];
     //UI updates (reordering) on collection view
-    [self.collectionView reloadData];
+    //[self.collectionView reloadData];
     //this is buggy, just reload data for now
-    /*[self.collectionView performBatchUpdates:^{
+    [self.collectionView performBatchUpdates:^{
         //go through the list of current beacons, inserting new ones, and moving the old ones to the proper position
         NSMutableArray *insertionIndices =[[NSMutableArray alloc] init];
         for (int i = 0; i < [_listOfBeacons count]; i++) {
@@ -163,16 +164,21 @@
                 //the new position is not equal to the previous position. we need to move from the old position to the new position
                 NSIndexPath *from = [NSIndexPath indexPathForItem:prevPosition.intValue inSection:0];
                 [self.collectionView moveItemAtIndexPath:from toIndexPath:newPosition];
-                
-                //remove the object from the dictionary, so we can see the removed items
-                [_listOfOldPositions removeObjectForKey:[beacon identifier]];
             }
+            
+            //remove the object from the dictionary, so we can see the removed items
+            [_listOfOldPositions removeObjectForKey:[beacon identifier]];
         }
         //insert all the items that we accumulated in the index paths array
         [self.collectionView insertItemsAtIndexPaths:insertionIndices];
         
         //remove all the objects that are no longer in range (all the items remaining in the old positions dictionary)
         NSMutableArray *deletionIndices = [[NSMutableArray alloc] init];
+        [_listOfOldPositions enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL* stop) {
+            if (value) {
+                [deletionIndices addObject:[NSIndexPath indexPathForRow:[value integerValue] inSection:0]];
+            }
+        }];
         
         //remove all the items accumulated in the deletion indices
         [self.collectionView deleteItemsAtIndexPaths:deletionIndices];
@@ -180,7 +186,7 @@
         
     } completion:^(BOOL finished) {
         //[self.collectionView reloadData];
-    }];*/
+    }];
     
     NSTimeInterval elapsedTime = [startTime timeIntervalSinceNow];
     NSTimeInterval colElapsedTime = [collectionViewStart timeIntervalSinceNow];

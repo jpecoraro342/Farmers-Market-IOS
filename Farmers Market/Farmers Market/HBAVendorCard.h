@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *vendorImage;
 @property (weak, nonatomic) IBOutlet UILabel *vendorNameLabel;
+@property (weak, nonatomic) IBOutlet UITextView *vendorInfoTextView;
 
 @end

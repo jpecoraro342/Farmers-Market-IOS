@@ -54,7 +54,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_cellIsSelected[indexPath.row] boolValue]) {
-        return 182;
+        return 282;
     }
     return 66;
 }
@@ -65,7 +65,6 @@
 
 -(HBAVendorDetailTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HBAVendorDetailTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
-    
     switch (indexPath.row) {
         case 0: {
             cell.titleLabel.text = @"About";

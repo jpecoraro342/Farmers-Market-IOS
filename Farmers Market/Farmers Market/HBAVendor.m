@@ -26,8 +26,18 @@
         self.aboutSectionDetails = [attributeDictionary objectForKey:@"about"];
         self.productsSectionDetails = [attributeDictionary objectForKey:@"products"];
         self.contactSectionDetails = [attributeDictionary objectForKey:@"contact"];
+        
+        self.aboutSectionDetails = [self addNewLines:self.aboutSectionDetails];
+        self.productsSectionDetails = [self addNewLines:self.productsSectionDetails];
+        self.contactSectionDetails = [self addNewLines:self.contactSectionDetails];
     }
     return self;
+}
+
+-(NSString*)addNewLines:(NSString *)text {
+    text = [text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+    text = [text stringByReplacingOccurrencesOfString:@"\\t" withString:@"\t"];
+    return text;
 }
 
 -(void)loadDetailSections:(void (^)())completed {
