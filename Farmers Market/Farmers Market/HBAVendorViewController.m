@@ -12,6 +12,7 @@
 #import "HBAVendor.h"
 #import "HBAVendorCard.h"
 #import "HBABeacon.h"
+#import "HBAConnectionTester.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -38,6 +39,7 @@
 {
     [super viewDidLoad];
     
+    
     [self loadAllVendors];
     
     _locationManager = [[CLLocationManager alloc] init];
@@ -51,6 +53,17 @@
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"vendorCell"];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
+     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self startMonitoringUUID];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self stopMonitoringUUID];
 }
 
 #pragma mark Collection View
@@ -75,8 +88,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //HBAVendorDetailViewController *detail = [[HBAVendorDetailViewController alloc] init];
-    HBAVendorDetailAccordianViewController *detail = [[HBAVendorDetailAccordianViewController alloc] init];
+    HBAVendorDetailAccordianViewController *detail = [[HBAVendorDetailAccordianViewController alloc] initWithVendor:[_vendorDictionary objectForKey:[_listOfBeacons[indexPath.row] identifier]]];
     [self.navigationController pushViewController:detail animated:YES];
 }
 
@@ -100,6 +112,8 @@
         [_listOfOldPositions setObject:[NSNumber numberWithInt:i] forKey:[beacon identifier]];
     }
     
+    [_listOfBeacons removeAllObjects];
+    
     //update all the beacons that were found
     for (CLBeacon *beacon in beacons) {
         NSString *identifier = [NSString stringWithFormat:@"%@:%zd:%zd", [beacon.proximityUUID UUIDString], [beacon.major integerValue], [beacon.minor integerValue]];
@@ -107,6 +121,7 @@
         if (!updateBeacon)
             break;
         [updateBeacon updateBeaconWithCLBeacon:beacon];
+        [_listOfBeacons addObject:updateBeacon];
         NSLog(@"\n%@\n\n", updateBeacon);
     }
 
@@ -128,13 +143,16 @@
         return NSOrderedSame;
     }];
     
+    NSDate *collectionViewStart = [NSDate new];
     //UI updates (reordering) on collection view
-    [self.collectionView performBatchUpdates:^{
+    [self.collectionView reloadData];
+    //this is buggy, just reload data for now
+    /*[self.collectionView performBatchUpdates:^{
         //go through the list of current beacons, inserting new ones, and moving the old ones to the proper position
         NSMutableArray *insertionIndices =[[NSMutableArray alloc] init];
         for (int i = 0; i < [_listOfBeacons count]; i++) {
             HBABeacon *beacon = _listOfBeacons[i];
-            NSNumber *prevPosition = [_listOfOldPositions objectForKey:[beacon identifier]];
+            NSNumber *prevPosition = [_listOfOldPositions objectForKey:[beacon identifier]] ?: nil;
             NSIndexPath *newPosition = [NSIndexPath indexPathForItem:i inSection:0];
             
             if (!prevPosition) {
@@ -160,10 +178,14 @@
         [self.collectionView deleteItemsAtIndexPaths:deletionIndices];
         [_listOfOldPositions removeAllObjects];
         
-    } completion:^(BOOL finished) {}];
+    } completion:^(BOOL finished) {
+        //[self.collectionView reloadData];
+    }];*/
     
     NSTimeInterval elapsedTime = [startTime timeIntervalSinceNow];
+    NSTimeInterval colElapsedTime = [collectionViewStart timeIntervalSinceNow];
     NSLog(@"Time to execute all collection view/beacon commands: %.4fmilliseconds", elapsedTime*-1000);
+    NSLog(@"Time to execute collection view batch updates: %.4fmilliseconds", colElapsedTime*-1000);
 }
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
@@ -208,7 +230,7 @@
         beacon.name = [NSString stringWithFormat:@"Farmer's Market %zd-%zd", beacon.major, beacon.minor];
         [beacon updateIdentifier];
         
-        [_listOfBeacons addObject:beacon];
+        //[_listOfBeacons addObject:beacon];
         [_beaconsDictionary setObject:beacon forKey:beacon.identifier];
     }
 }
@@ -217,10 +239,12 @@
 
 -(void)loadAllVendors {
     NSString *method = @"getAllStalls";
-    NSString *postData = [NSString stringWithFormat:@"method=%@", method];
+    NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=\"\"", method];
     HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
         if (!error) {
-            NSArray *stalls = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            
+            NSArray *stalls = [response objectForKey:@"stalls"];
             _vendorDictionary = [[NSMutableDictionary alloc] initWithCapacity:[stalls count]];
             for (NSDictionary *dict in stalls) {
                 HBAVendor *vendor = [[HBAVendor alloc] initWithAttributeDictionary:dict];

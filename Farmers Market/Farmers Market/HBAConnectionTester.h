@@ -11,14 +11,15 @@
 @interface HBAConnectionTester : NSObject
 
 +(void)assign:(NSString*)beaconID userID:(NSString *)userID;
++(void)unassign:(NSString*)beaconID;
++(void)unassignAll;
+
 +(void)getEmptyStalls;
 +(void)getAllStalls;
 +(void)getStallFromBeaconID:(NSString*)beaconID;
-+(void)getStallDetails:(NSString*)userID;
-+(void)getPostFromBeaconID:(NSString*)beaconID;
-+(void)getAllPosts;
-+(void)getAllBeaconPosts;
-+(void)unassign:(NSString*)beaconID;
-+(void)unassignAll;
++(void)getStallDetails:(NSString*)userID __deprecated;
++(void)getPostFromBeaconID:(NSString*)beaconID __deprecated;
++(void)getAllPosts __deprecated;
++(void)getAllBeaconPosts __deprecated;
 
 @end

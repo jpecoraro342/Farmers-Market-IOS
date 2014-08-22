@@ -17,7 +17,7 @@
     NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=%@&params[]=%@", method, beaconID, userID];
     HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
         if (!error) {
-            
+
         }
         else {
             [self alertUserOfErrorWithError:error];
@@ -29,7 +29,7 @@
 +(void)getEmptyStalls
 {
     NSString *method = @"getEmptyStalls";
-    NSString *postData = [NSString stringWithFormat:@"method=%@", method];
+    NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=\"\"", method];
     HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
         if (!error) {
             
@@ -44,10 +44,10 @@
 +(void)getAllStalls
 {
     NSString *method = @"getAllStalls";
-    NSString *postData = [NSString stringWithFormat:@"method=%@", method];
+    NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=\"\"", method];
     HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
         if (!error) {
-            
+
         }
         else {
             [self alertUserOfErrorWithError:error];
@@ -104,7 +104,7 @@
 +(void)getAllPosts
 {
     NSString *method = @"getAllPosts";
-    NSString *postData = [NSString stringWithFormat:@"method=%@", method];
+    NSString *postData = [NSString stringWithFormat:@"method=%@&params=\"\"", method];
     HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
         if (!error) {
             
@@ -119,7 +119,7 @@
 +(void)getAllBeaconPosts
 {
     NSString *method = @"getAllBeaconPosts";
-    NSString *postData = [NSString stringWithFormat:@"method=%@", method];
+    NSString *postData = [NSString stringWithFormat:@"method=%@&params=\"\"", method];
     HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
         if (!error) {
             

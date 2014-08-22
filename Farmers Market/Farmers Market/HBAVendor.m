@@ -20,13 +20,19 @@
         self.stallInfo = [attributeDictionary objectForKey:@"stallInfo"];
         self.beaconID = [attributeDictionary objectForKey:@"beaconID"];
         self.thumbURL = [attributeDictionary objectForKey:@"thumbURL"];
+        self.coverPhotoURL = [attributeDictionary objectForKey:@"coverPhotoURL"];
+        
+        //further customization to detail sections may be added later
+        self.aboutSectionDetails = [attributeDictionary objectForKey:@"about"];
+        self.productsSectionDetails = [attributeDictionary objectForKey:@"products"];
+        self.contactSectionDetails = [attributeDictionary objectForKey:@"contact"];
     }
     return self;
 }
 
 -(void)loadDetailSections:(void (^)())completed {
     NSString *method = @"getStallDetails";
-    NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=%@", method, self.userID];
+    NSString *postData = [NSString stringWithFormat:@"method=%@&params[]=%@", method, self.beaconID];
     HBADatabaseConnector *databaseConnector = [[HBADatabaseConnector alloc] initWithURLString:kMobileAPI andPostData:postData completionBlock:^(NSMutableData *data, NSError *error) {
         if (!error) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];

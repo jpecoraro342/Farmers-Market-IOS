@@ -11,6 +11,8 @@
 #import "HBAVendorDetailSection.h"
 #import "HBAVendor.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface HBAVendorDetailAccordianViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
@@ -36,19 +38,7 @@
 {
     [super viewDidLoad];
     
-    if (!_vendor.detailSections) {
-        [_vendor loadDetailSections:^{
-            NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-            for (int i = 0; i < [_vendor.detailSections count]; i++) {
-                [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-            }
-            [self.tableView beginUpdates];
-            
-            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
-            
-            [self.tableView endUpdates];
-        }];
-    }
+    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:_vendor.coverPhotoURL] placeholderImage:nil];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -70,15 +60,29 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.vendor.detailSections.count;
+    return 3;
 }
 
 -(HBAVendorDetailTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HBAVendorDetailTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
     
-    HBAVendorDetailSection *sectionDetails = [[self.vendor detailSections] objectAtIndex:indexPath.row];
-    cell.titleLabel.text = sectionDetails.title;
-    cell.detailTextView.text = sectionDetails.content;
+    switch (indexPath.row) {
+        case 0: {
+            cell.titleLabel.text = @"About";
+            cell.detailTextView.text = _vendor.aboutSectionDetails;
+            break;
+        }
+        case 1: {
+            cell.titleLabel.text = @"Products";
+            cell.detailTextView.text = _vendor.productsSectionDetails;
+            break;
+        }
+        case 2: {
+            cell.titleLabel.text = @"Contact";
+            cell.detailTextView.text = _vendor.contactSectionDetails;
+            break;
+        }
+    }
     
     [cell.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0f]];
     

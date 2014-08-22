@@ -19,12 +19,14 @@
 @property (nonatomic, copy) NSString *thumbURL;
 @property (nonatomic, copy) NSString *coverPhotoURL;
 
-@property (nonatomic, strong) UIImage *stallThumb;
+@property (nonatomic, copy) NSString *aboutSectionDetails;
+@property (nonatomic, copy) NSString *productsSectionDetails;
+@property (nonatomic, copy) NSString *contactSectionDetails;
 
-@property (nonatomic, strong) NSMutableArray *detailSections;
+@property (nonatomic, strong) NSMutableArray *detailSections __deprecated;
 
 -(instancetype)initWithAttributeDictionary:(NSDictionary *)attributeDictionary;
 
--(void)loadDetailSections:(void(^)())completed;
+-(void)loadDetailSections:(void(^)())completed __deprecated;
 
 @end
