@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HBAVendorViewController;
 
 @interface HBAAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) HBAVendorViewController *mainViewController;
 
 @end

@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
     
-    
+    [self unarchiveVendors];
     [self loadAllVendors];
     
     _locationManager = [[CLLocationManager alloc] init];
@@ -251,7 +251,8 @@
             NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
             NSArray *stalls = [response objectForKey:@"stalls"];
-            _vendorDictionary = [[NSMutableDictionary alloc] initWithCapacity:[stalls count]];
+            if (!_vendorDictionary)
+                _vendorDictionary = [[NSMutableDictionary alloc] initWithCapacity:[stalls count]];
             for (NSDictionary *dict in stalls) {
                 HBAVendor *vendor = [[HBAVendor alloc] initWithAttributeDictionary:dict];
                 [_vendorDictionary setObject:vendor forKey:vendor.beaconID];
@@ -263,6 +264,18 @@
         }
     }];
     [databaseConnector startConnection];
+}
+
+-(void)archiveVendors {
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_vendorDictionary];
+    [data writeToFile:[kBaseFilePath stringByAppendingPathComponent:@"vendors.archive"] atomically:YES];
+}
+
+-(void)unarchiveVendors {
+    NSData *data = [NSData dataWithContentsOfFile:[kBaseFilePath stringByAppendingPathComponent:@"vendors.archive"]];
+    _vendorDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (_vendorDictionary)
+        _finishedLoading = YES;
 }
 
 - (void)didReceiveMemoryWarning

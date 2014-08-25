@@ -10,4 +10,7 @@
 
 @interface HBAVendorViewController : UIViewController
 
+-(void)archiveVendors;
+-(void)unarchiveVendors;
+
 @end

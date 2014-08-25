@@ -34,6 +34,34 @@
     return self;
 }
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.userID = [aDecoder decodeObjectForKey:@"userID"];
+        self.stallName = [aDecoder decodeObjectForKey:@"stallName"];
+        self.stallInfo = [aDecoder decodeObjectForKey:@"stallInfo"];
+        self.beaconID = [aDecoder decodeObjectForKey:@"beaconID"];
+        self.thumbURL = [aDecoder decodeObjectForKey:@"thumbURL"];
+        self.coverPhotoURL = [aDecoder decodeObjectForKey:@"coverPhotoURL"];
+        self.aboutSectionDetails = [aDecoder decodeObjectForKey:@"aboutDetails"];
+        self.productsSectionDetails = [aDecoder decodeObjectForKey:@"productDetails"];
+        self.contactSectionDetails = [aDecoder decodeObjectForKey:@"contactDetails"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.userID forKey:@"userID"];
+    [aCoder encodeObject:self.stallName forKey:@"stallName"];
+    [aCoder encodeObject:self.stallInfo forKey:@"stallInfo"];
+    [aCoder encodeObject:self.beaconID forKey:@"beaconID"];
+    [aCoder encodeObject:self.thumbURL forKey:@"thumbURL"];
+    [aCoder encodeObject:self.coverPhotoURL forKey:@"coverPhotoURL"];
+    [aCoder encodeObject:self.aboutSectionDetails forKey:@"aboutDetails"];
+    [aCoder encodeObject:self.productsSectionDetails forKey:@"productDetails"];
+    [aCoder encodeObject:self.contactSectionDetails forKey:@"contactDetails"];
+}
+
 -(NSString*)addNewLines:(NSString *)text {
     text = [text stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
     text = [text stringByReplacingOccurrencesOfString:@"\\t" withString:@"\t"];

@@ -10,7 +10,7 @@
 
 @class HBABeacon;
 
-@interface HBAVendor : NSObject
+@interface HBAVendor : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *stallName;
