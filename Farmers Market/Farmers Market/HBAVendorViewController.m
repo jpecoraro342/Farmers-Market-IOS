@@ -251,12 +251,14 @@
             NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
             NSArray *stalls = [response objectForKey:@"stalls"];
-            if (!_vendorDictionary)
-                _vendorDictionary = [[NSMutableDictionary alloc] initWithCapacity:[stalls count]];
+
+            _vendorDictionary = [[NSMutableDictionary alloc] initWithCapacity:[stalls count]];
+            
             for (NSDictionary *dict in stalls) {
                 HBAVendor *vendor = [[HBAVendor alloc] initWithAttributeDictionary:dict];
                 [_vendorDictionary setObject:vendor forKey:vendor.beaconID];
             }
+            [self.collectionView reloadData];
             _finishedLoading = YES;
         }
         else {
