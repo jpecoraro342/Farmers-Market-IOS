@@ -122,7 +122,11 @@
         if (!updateBeacon)
             break;
         [updateBeacon updateBeaconWithCLBeacon:beacon];
-        [_listOfBeacons addObject:updateBeacon];
+        
+        //if there is a post for this beacon, add it to the list
+        if ([_vendorDictionary objectForKey:updateBeacon.identifier])
+            [_listOfBeacons addObject:updateBeacon];
+        
         NSLog(@"\n%@\n\n", updateBeacon);
     }
 
@@ -258,6 +262,7 @@
                 HBAVendor *vendor = [[HBAVendor alloc] initWithAttributeDictionary:dict];
                 [_vendorDictionary setObject:vendor forKey:vendor.beaconID];
             }
+            [_vendorDictionary removeObjectForKey:@"-1"];
             [self.collectionView reloadData];
             _finishedLoading = YES;
         }
