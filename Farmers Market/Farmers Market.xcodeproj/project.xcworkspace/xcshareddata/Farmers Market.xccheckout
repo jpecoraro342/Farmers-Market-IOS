@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BAFC38AE-35BE-4A10-A674-6799D1093F55</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Farmers Market</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9000EBAA-6319-4869-B391-9A08C304B7ED</key>
+		<string>https://github.com/jpecoraro342/Farmers-Market-IOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Farmers Market/Farmers Market.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9000EBAA-6319-4869-B391-9A08C304B7ED</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jpecoraro342/Farmers-Market-IOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9000EBAA-6319-4869-B391-9A08C304B7ED</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9000EBAA-6319-4869-B391-9A08C304B7ED</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Farmers Market-IOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>

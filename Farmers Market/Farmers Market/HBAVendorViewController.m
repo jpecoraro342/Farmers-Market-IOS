@@ -115,6 +115,11 @@
     
     [_listOfBeacons removeAllObjects];
     
+    NSTimeInterval elapsedTime = [startTime timeIntervalSinceNow];
+    NSLog(@"Time to set beacons old positions, and remove all beacons from list: %.4fmilliseconds", elapsedTime*-1000);
+    
+    startTime = [NSDate new];
+    
     //update all the beacons that were found
     for (CLBeacon *beacon in beacons) {
         NSString *identifier = [NSString stringWithFormat:@"%@:%zd:%zd", [beacon.proximityUUID UUIDString], [beacon.major integerValue], [beacon.minor integerValue]];
@@ -127,8 +132,13 @@
         if ([_vendorDictionary objectForKey:updateBeacon.identifier])
             [_listOfBeacons addObject:updateBeacon];
         
-        NSLog(@"\n%@\n\n", updateBeacon);
+        //NSLog(@"\n%@\n\n", updateBeacon);
     }
+    
+    elapsedTime = [startTime timeIntervalSinceNow];
+    NSLog(@"Time to get beacons and add them to dictionary: %.4fmilliseconds", elapsedTime*-1000);
+    
+    startTime = [NSDate new];
 
     //sort all the beacons
     [_listOfBeacons sortUsingComparator:^NSComparisonResult(HBABeacon *beacon1, HBABeacon *beacon2) {
@@ -147,6 +157,9 @@
         }
         return NSOrderedSame;
     }];
+    
+    elapsedTime = [startTime timeIntervalSinceNow];
+    NSLog(@"Time to sort beacons: %.4fmilliseconds", elapsedTime*-1000);
     
     NSDate *collectionViewStart = [NSDate new];
     //UI updates (reordering) on collection view
@@ -192,9 +205,7 @@
         //[self.collectionView reloadData];
     }];
     
-    NSTimeInterval elapsedTime = [startTime timeIntervalSinceNow];
     NSTimeInterval colElapsedTime = [collectionViewStart timeIntervalSinceNow];
-    NSLog(@"Time to execute all collection view/beacon commands: %.4fmilliseconds", elapsedTime*-1000);
     NSLog(@"Time to execute collection view batch updates: %.4fmilliseconds", colElapsedTime*-1000);
 }
 

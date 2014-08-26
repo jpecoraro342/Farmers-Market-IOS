@@ -11,23 +11,8 @@
 		7C6262A419A5368000760427 /* uparrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6262A219A5368000760427 /* uparrow@2x.png */; };
 		7CA26B8B199D0FF000C80AA4 /* HBAVendorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26B89199D0FF000C80AA4 /* HBAVendorViewController.m */; };
 		7CA26B8C199D0FF000C80AA4 /* HBAVendorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B8A199D0FF000C80AA4 /* HBAVendorViewController.xib */; };
-		7CA26BA0199D3A5B00C80AA4 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B95199D3A5B00C80AA4 /* 10.jpg */; };
-		7CA26BA1199D3A5B00C80AA4 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B96199D3A5B00C80AA4 /* 11.jpg */; };
-		7CA26BA2199D3A5B00C80AA4 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B97199D3A5B00C80AA4 /* 1.jpg */; };
-		7CA26BA3199D3A5B00C80AA4 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B98199D3A5B00C80AA4 /* 2.jpg */; };
-		7CA26BA4199D3A5B00C80AA4 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B99199D3A5B00C80AA4 /* 3.jpg */; };
-		7CA26BA5199D3A5B00C80AA4 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B9A199D3A5B00C80AA4 /* 4.jpg */; };
-		7CA26BA6199D3A5B00C80AA4 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B9B199D3A5B00C80AA4 /* 5.jpg */; };
-		7CA26BA7199D3A5B00C80AA4 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B9C199D3A5B00C80AA4 /* 6.jpg */; };
-		7CA26BA8199D3A5B00C80AA4 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B9D199D3A5B00C80AA4 /* 7.jpg */; };
-		7CA26BA9199D3A5B00C80AA4 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B9E199D3A5B00C80AA4 /* 8.jpg */; };
-		7CA26BAA199D3A5B00C80AA4 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26B9F199D3A5B00C80AA4 /* 9.jpg */; };
 		7CA26BAE199D4B0D00C80AA4 /* HBAVendorCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26BAC199D4B0D00C80AA4 /* HBAVendorCard.m */; };
 		7CA26BAF199D4B0D00C80AA4 /* HBAVendorCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26BAD199D4B0D00C80AA4 /* HBAVendorCard.xib */; };
-		7CA26BB9199D566B00C80AA4 /* farm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26BB5199D566B00C80AA4 /* farm.jpg */; };
-		7CA26BBA199D566B00C80AA4 /* honey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26BB6199D566B00C80AA4 /* honey.jpg */; };
-		7CA26BBB199D566B00C80AA4 /* lunch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26BB7199D566B00C80AA4 /* lunch.jpg */; };
-		7CA26BBC199D566B00C80AA4 /* vine storefront.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26BB8199D566B00C80AA4 /* vine storefront.png */; };
 		7CA26BC8199E40AB00C80AA4 /* hamburgerIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26BC7199E40AB00C80AA4 /* hamburgerIcon@2x.png */; };
 		7CC191E319A26A2B00DDA815 /* HBAVendorDetailAccordianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC191E119A26A2B00DDA815 /* HBAVendorDetailAccordianViewController.m */; };
 		7CC191E419A26A2B00DDA815 /* HBAVendorDetailAccordianViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC191E219A26A2B00DDA815 /* HBAVendorDetailAccordianViewController.xib */; };
@@ -70,24 +55,9 @@
 		7CA26B88199D0FF000C80AA4 /* HBAVendorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAVendorViewController.h; sourceTree = "<group>"; };
 		7CA26B89199D0FF000C80AA4 /* HBAVendorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAVendorViewController.m; sourceTree = "<group>"; };
 		7CA26B8A199D0FF000C80AA4 /* HBAVendorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HBAVendorViewController.xib; sourceTree = "<group>"; };
-		7CA26B95199D3A5B00C80AA4 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
-		7CA26B96199D3A5B00C80AA4 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
-		7CA26B97199D3A5B00C80AA4 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		7CA26B98199D3A5B00C80AA4 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		7CA26B99199D3A5B00C80AA4 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		7CA26B9A199D3A5B00C80AA4 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
-		7CA26B9B199D3A5B00C80AA4 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
-		7CA26B9C199D3A5B00C80AA4 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
-		7CA26B9D199D3A5B00C80AA4 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
-		7CA26B9E199D3A5B00C80AA4 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
-		7CA26B9F199D3A5B00C80AA4 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
 		7CA26BAB199D4B0D00C80AA4 /* HBAVendorCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAVendorCard.h; sourceTree = "<group>"; };
 		7CA26BAC199D4B0D00C80AA4 /* HBAVendorCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAVendorCard.m; sourceTree = "<group>"; };
 		7CA26BAD199D4B0D00C80AA4 /* HBAVendorCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HBAVendorCard.xib; sourceTree = "<group>"; };
-		7CA26BB5199D566B00C80AA4 /* farm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = farm.jpg; sourceTree = "<group>"; };
-		7CA26BB6199D566B00C80AA4 /* honey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = honey.jpg; sourceTree = "<group>"; };
-		7CA26BB7199D566B00C80AA4 /* lunch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lunch.jpg; sourceTree = "<group>"; };
-		7CA26BB8199D566B00C80AA4 /* vine storefront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vine storefront.png"; sourceTree = "<group>"; };
 		7CA26BC7199E40AB00C80AA4 /* hamburgerIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamburgerIcon@2x.png"; sourceTree = "<group>"; };
 		7CC191E019A26A2B00DDA815 /* HBAVendorDetailAccordianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAVendorDetailAccordianViewController.h; sourceTree = "<group>"; };
 		7CC191E119A26A2B00DDA815 /* HBAVendorDetailAccordianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAVendorDetailAccordianViewController.m; sourceTree = "<group>"; };
@@ -156,21 +126,6 @@
 				7C6262A119A5368000760427 /* downarrow@2x.png */,
 				7C6262A219A5368000760427 /* uparrow@2x.png */,
 				7CA26BC7199E40AB00C80AA4 /* hamburgerIcon@2x.png */,
-				7CA26BB5199D566B00C80AA4 /* farm.jpg */,
-				7CA26BB6199D566B00C80AA4 /* honey.jpg */,
-				7CA26BB7199D566B00C80AA4 /* lunch.jpg */,
-				7CA26BB8199D566B00C80AA4 /* vine storefront.png */,
-				7CA26B95199D3A5B00C80AA4 /* 10.jpg */,
-				7CA26B96199D3A5B00C80AA4 /* 11.jpg */,
-				7CA26B97199D3A5B00C80AA4 /* 1.jpg */,
-				7CA26B98199D3A5B00C80AA4 /* 2.jpg */,
-				7CA26B99199D3A5B00C80AA4 /* 3.jpg */,
-				7CA26B9A199D3A5B00C80AA4 /* 4.jpg */,
-				7CA26B9B199D3A5B00C80AA4 /* 5.jpg */,
-				7CA26B9C199D3A5B00C80AA4 /* 6.jpg */,
-				7CA26B9D199D3A5B00C80AA4 /* 7.jpg */,
-				7CA26B9E199D3A5B00C80AA4 /* 8.jpg */,
-				7CA26B9F199D3A5B00C80AA4 /* 9.jpg */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -373,29 +328,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CA26BA0199D3A5B00C80AA4 /* 10.jpg in Resources */,
 				7CA26BC8199E40AB00C80AA4 /* hamburgerIcon@2x.png in Resources */,
-				7CA26BB9199D566B00C80AA4 /* farm.jpg in Resources */,
-				7CA26BA5199D3A5B00C80AA4 /* 4.jpg in Resources */,
 				7CC191E919A26C3F00DDA815 /* HBAVendorDetailTableViewCell.xib in Resources */,
-				7CA26BA6199D3A5B00C80AA4 /* 5.jpg in Resources */,
-				7CA26BBC199D566B00C80AA4 /* vine storefront.png in Resources */,
-				7CA26BBA199D566B00C80AA4 /* honey.jpg in Resources */,
 				7CA26BAF199D4B0D00C80AA4 /* HBAVendorCard.xib in Resources */,
 				7CC191E419A26A2B00DDA815 /* HBAVendorDetailAccordianViewController.xib in Resources */,
-				7CA26BA7199D3A5B00C80AA4 /* 6.jpg in Resources */,
-				7CA26BBB199D566B00C80AA4 /* lunch.jpg in Resources */,
-				7CA26BA3199D3A5B00C80AA4 /* 2.jpg in Resources */,
-				7CA26BA8199D3A5B00C80AA4 /* 7.jpg in Resources */,
-				7CA26BA1199D3A5B00C80AA4 /* 11.jpg in Resources */,
-				7CA26BAA199D3A5B00C80AA4 /* 9.jpg in Resources */,
 				7CCCAFDC199A4DE50039422C /* InfoPlist.strings in Resources */,
-				7CA26BA9199D3A5B00C80AA4 /* 8.jpg in Resources */,
-				7CA26BA4199D3A5B00C80AA4 /* 3.jpg in Resources */,
 				7C6262A419A5368000760427 /* uparrow@2x.png in Resources */,
 				7CA26B8C199D0FF000C80AA4 /* HBAVendorViewController.xib in Resources */,
 				7CCCAFE4199A4DE50039422C /* Images.xcassets in Resources */,
-				7CA26BA2199D3A5B00C80AA4 /* 1.jpg in Resources */,
 				7C6262A319A5368000760427 /* downarrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,6 +519,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Farmers Market/Farmers Market-Prefix.pch";
 				INFOPLIST_FILE = "Farmers Market/Farmers Market-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -593,6 +534,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Farmers Market/Farmers Market-Prefix.pch";
 				INFOPLIST_FILE = "Farmers Market/Farmers Market-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
