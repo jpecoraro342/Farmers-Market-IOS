@@ -69,6 +69,15 @@
     return [self.identifier hash];
 }
 
+-(BOOL)isEqual:(id)object {
+    if (![object isKindOfClass:[HBABeacon class]]) {
+        return NO;
+    }
+    else {
+        return [self.identifier isEqualToString:[object identifier]];
+    }
+}
+
 -(NSString*)description {
     return [NSString stringWithFormat:@"Name: %@\nUUID:%@\nSignal: %zd\nMajor: %zd\nMinor: %zd\nDistance: %@\nAccuracy: +/- %.2fm", self.name, [self.uuid UUIDString], self.rssi, self.major, self.minor, self.distance, self.accuracy];
 }

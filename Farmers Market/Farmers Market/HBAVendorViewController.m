@@ -28,9 +28,8 @@
 
 @implementation HBAVendorViewController {
     NSMutableDictionary *_vendorDictionary;
-    NSMutableArray *_listOfBeacons;
+    NSMutableOrderedSet *_listOfBeacons;
     NSMutableDictionary *_beaconsDictionary;
-    NSMutableDictionary *_listOfOldPositions;
     
     BOOL _finishedLoading;
 }
@@ -104,51 +103,39 @@
         return;
     }
     
-    if (!_listOfOldPositions)
-        _listOfOldPositions = [NSMutableDictionary dictionaryWithCapacity:[_listOfBeacons count]];
-    
-    //register all the old positions in the dictionary
-    for (int i = 0; i < [_listOfBeacons count]; i++) {
-        HBABeacon *beacon = _listOfBeacons[i];
-        [_listOfOldPositions setObject:[NSNumber numberWithInt:i] forKey:[beacon identifier]];
-    }
-    
-    [_listOfBeacons removeAllObjects];
-    
-    NSTimeInterval elapsedTime = [startTime timeIntervalSinceNow];
-    NSLog(@"Time to set beacons old positions, and remove all beacons from list: %.4fmilliseconds", elapsedTime*-1000);
-    
-    startTime = [NSDate new];
+    NSMutableOrderedSet *newBeacons = [[NSMutableOrderedSet alloc] init];
+    NSMutableOrderedSet *itemsDeleted;
+    NSMutableOrderedSet *itemsInserted;
     
     //update all the beacons that were found
     for (CLBeacon *beacon in beacons) {
         NSString *identifier = [NSString stringWithFormat:@"%@:%zd:%zd", [beacon.proximityUUID UUIDString], [beacon.major integerValue], [beacon.minor integerValue]];
         HBABeacon *updateBeacon = [_beaconsDictionary objectForKey:identifier];
+        NSInteger index = [_listOfBeacons indexOfObject:updateBeacon];
+        
+        if (index != NSNotFound)
+            updateBeacon = [_listOfBeacons objectAtIndex:index];
+        
         if (!updateBeacon)
-            break;
+            continue;
         [updateBeacon updateBeaconWithCLBeacon:beacon];
         
         //if there is a post for this beacon, add it to the list
         if ([_vendorDictionary objectForKey:updateBeacon.identifier])
-            [_listOfBeacons addObject:updateBeacon];
-        
+            [newBeacons addObject:updateBeacon];
+
         //NSLog(@"\n%@\n\n", updateBeacon);
     }
     
-    elapsedTime = [startTime timeIntervalSinceNow];
-    NSLog(@"Time to get beacons and add them to dictionary: %.4fmilliseconds", elapsedTime*-1000);
-    
-    startTime = [NSDate new];
-
     //sort all the beacons
-    [_listOfBeacons sortUsingComparator:^NSComparisonResult(HBABeacon *beacon1, HBABeacon *beacon2) {
-        if (beacon1.rssi < (beacon2.rssi - 10)) {
+    [newBeacons sortUsingComparator:^NSComparisonResult(HBABeacon *beacon1, HBABeacon *beacon2) {
+        if (beacon1.rssi < (beacon2.rssi)) {
             if (beacon2.rssi == 0) {
                 return NSOrderedAscending;
             }
             return NSOrderedDescending;
         }
-        else if (beacon1.rssi > beacon2.rssi + 10) {
+        else if (beacon1.rssi > beacon2.rssi) {
             //if the location is unknown, we want to return descending since it is far away.. (actually, we want to remove it from the list altogether?
             if (beacon1.rssi == 0) {
                 return NSOrderedDescending;
@@ -158,55 +145,50 @@
         return NSOrderedSame;
     }];
     
-    elapsedTime = [startTime timeIntervalSinceNow];
-    NSLog(@"Time to sort beacons: %.4fmilliseconds", elapsedTime*-1000);
+    itemsDeleted = [_listOfBeacons mutableCopy];
+    itemsInserted = [newBeacons mutableCopy];
     
-    NSDate *collectionViewStart = [NSDate new];
+    [itemsDeleted minusOrderedSet:newBeacons];
+    [itemsInserted minusOrderedSet:_listOfBeacons];
+    
+    NSMutableArray *deleltionIndices = [[NSMutableArray alloc] init];
+    NSMutableArray *insertionIndices = [[NSMutableArray alloc] init];
+    
     //UI updates (reordering) on collection view
     //[self.collectionView reloadData];
-    //this is buggy, just reload data for now
     [self.collectionView performBatchUpdates:^{
-        //go through the list of current beacons, inserting new ones, and moving the old ones to the proper position
-        NSMutableArray *insertionIndices =[[NSMutableArray alloc] init];
-        for (int i = 0; i < [_listOfBeacons count]; i++) {
-            HBABeacon *beacon = _listOfBeacons[i];
-            NSNumber *prevPosition = [_listOfOldPositions objectForKey:[beacon identifier]] ?: nil;
-            NSIndexPath *newPosition = [NSIndexPath indexPathForItem:i inSection:0];
-            
-            if (!prevPosition) {
-                //if the previous position does not exist, this is a new item, so we need to insert it
-                [insertionIndices addObject:newPosition];
-            }
-            else if ([prevPosition intValue] != i) {
-                //the new position is not equal to the previous position. we need to move from the old position to the new position
-                NSIndexPath *from = [NSIndexPath indexPathForItem:prevPosition.intValue inSection:0];
-                [self.collectionView moveItemAtIndexPath:from toIndexPath:newPosition];
-            }
-            
-            //remove the object from the dictionary, so we can see the removed items
-            [_listOfOldPositions removeObjectForKey:[beacon identifier]];
+        //delete all the items we need to delete
+        for (HBABeacon *beacon in itemsDeleted) {
+            NSInteger index = [_listOfBeacons indexOfObject:beacon];
+            [_listOfBeacons removeObject:beacon];
+            [deleltionIndices addObject:[NSIndexPath indexPathForRow:index inSection:0]];
         }
-        //insert all the items that we accumulated in the index paths array
+        [self.collectionView deleteItemsAtIndexPaths:deleltionIndices];
+        
+        for (HBABeacon *beacon in itemsInserted) {
+            [_listOfBeacons addObject:beacon];
+            NSInteger index = [_listOfBeacons indexOfObject:beacon];
+            [insertionIndices addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+        }
         [self.collectionView insertItemsAtIndexPaths:insertionIndices];
         
-        //remove all the objects that are no longer in range (all the items remaining in the old positions dictionary)
-        NSMutableArray *deletionIndices = [[NSMutableArray alloc] init];
-        [_listOfOldPositions enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL* stop) {
-            if (value) {
-                [deletionIndices addObject:[NSIndexPath indexPathForRow:[value integerValue] inSection:0]];
-            }
-        }];
+        //figure out if we need to change the first object in our list
+        NSInteger newFirstRSSI = [[newBeacons firstObject] rssi];
+        NSInteger oldFirstRSSI = [[_listOfBeacons firstObject] rssi];
         
-        //remove all the items accumulated in the deletion indices
-        [self.collectionView deleteItemsAtIndexPaths:deletionIndices];
-        [_listOfOldPositions removeAllObjects];
+        if (newFirstRSSI > oldFirstRSSI && newFirstRSSI != 0) {
+            NSUInteger oldIndex = [_listOfBeacons indexOfObject:[newBeacons firstObject]];
+            NSIndexSet *index = [[NSIndexSet alloc] initWithIndex:oldIndex];
+            [_listOfBeacons moveObjectsAtIndexes:index toIndex:0];
+            [self.collectionView moveItemAtIndexPath:[NSIndexPath indexPathForRow:oldIndex inSection:0] toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        }
         
     } completion:^(BOOL finished) {
         //[self.collectionView reloadData];
     }];
     
-    NSTimeInterval colElapsedTime = [collectionViewStart timeIntervalSinceNow];
-    NSLog(@"Time to execute collection view batch updates: %.4fmilliseconds", colElapsedTime*-1000);
+    NSTimeInterval elapsedTime = [startTime timeIntervalSinceNow];
+    NSLog(@"Time to execute all of that hunk of junk: %.4fmilliseconds", elapsedTime*-1000);
 }
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
@@ -241,7 +223,7 @@
 }
 
 -(void)loadBeacons {
-    _listOfBeacons = [[NSMutableArray alloc] initWithCapacity:kNumberOfBeaconsInQuiver];
+    _listOfBeacons = [[NSMutableOrderedSet alloc] initWithCapacity:kNumberOfBeaconsInQuiver];
     _beaconsDictionary = [[NSMutableDictionary alloc] initWithCapacity:kNumberOfBeaconsInQuiver];
     for (int i = 1; i < kNumberOfBeaconsInQuiver+1; i++) {
         HBABeacon *beacon = [[HBABeacon alloc] init];
@@ -251,7 +233,6 @@
         beacon.name = [NSString stringWithFormat:@"Farmer's Market %zd-%zd", beacon.major, beacon.minor];
         [beacon updateIdentifier];
         
-        //[_listOfBeacons addObject:beacon];
         [_beaconsDictionary setObject:beacon forKey:beacon.identifier];
     }
 }
