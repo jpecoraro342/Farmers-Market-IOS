@@ -54,7 +54,33 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_cellIsSelected[indexPath.row] boolValue]) {
-        return 282;
+        NSString *cellText;
+        
+        switch (indexPath.row) {
+            case 0: {
+                cellText = _vendor.aboutSectionDetails;
+                break;
+            }
+            case 1: {
+                cellText = _vendor.productsSectionDetails;
+                break;
+            }
+            case 2: {
+                cellText = _vendor.contactSectionDetails;
+                break;
+            }
+        }
+        
+        CGSize constraint = CGSizeMake(self.tableView.frame.size.width - 10, MAXFLOAT);
+        
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14.0] forKey:NSFontAttributeName];
+        
+        CGRect textsize = [cellText boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+        CGFloat textHeight = textsize.size.height + 20;
+        
+        textHeight = (textHeight < 50.0) ? 50.0 : textHeight;
+        
+        return textHeight + 66;
     }
     return 66;
 }
